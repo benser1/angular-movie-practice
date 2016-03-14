@@ -1,0 +1,28 @@
+    <script type="text/ng-template" id="/home.html">
+      <div class="page-header">
+        <h1>Movie Collection</h1>
+      </div>
+
+        <div ng-repeat="movie in movies | orderBy: '-upvotes'">
+          <p>
+            {{ movie.title }} ({{movie.year }}) - upvotes: {{ movie.upvotes }} 
+            <span ng-click="incrementUpvotes(movie)" class="glyphicon glyphicon-thumbs-up"> 
+            </span> 
+          </p>
+          <span>
+            <a href="#/movies/{{$index}}">Comments</a>
+          </span>
+        </div>
+
+        <form ng-submit="addMovie()">
+          <div class="form-group">
+            <br>
+            <input type="text" ng-model="title" placeholder="Movie Title" class="form-control">
+
+            <input type="text" ng-model="year" placeholder="Year Released" class="form-control">
+
+            <button class="btn btn-danger" type="submit">Add Movie</button>
+          </div>
+        </form>
+
+</script>
