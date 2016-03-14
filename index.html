@@ -2,15 +2,81 @@
 <html>
 <head>
   <title>Movie Collection!</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   <script src="app.js"></script>
 </head>
-<body>
-  <div ng-app="movieCollection" ng-controller="MainController">
-    <div>
-      {{ title }}
 
+<body ng-app="MovieCollection">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+
+      <ui-view></ui-view>
     </div>
   </div>
+
+    <script type="text/ng-template" id="/home.html">
+      <div class="page-header">
+        <h1>Movie Collection</h1>
+      </div>
+
+        <div ng-repeat="movie in movies | orderBy: '-upvotes'">
+          <p>
+            {{ movie.title }} ({{movie.year }}) - upvotes: {{ movie.upvotes }} 
+            <span ng-click="incrementUpvotes(movie)" class="glyphicon glyphicon-thumbs-up"> 
+            </span> 
+          </p>
+          <span>
+            <a href="#/movies/{{$index}}">Comments</a>
+          </span>
+        </div>
+
+        <form ng-submit="addMovie()">
+          <div class="form-group">
+            <br>
+            <input type="text" ng-model="title" placeholder="Movie Title" class="form-control">
+
+            <input type="text" ng-model="year" placeholder="Year Released" class="form-control">
+
+            <button class="btn btn-danger" type="submit">Add Movie</button>
+          </div>
+        </form>
+
+</script>
+
+    <script type="text/ng-template" id="/movies.html">
+
+        <div ng-repeat="comment in movie.comments | orderBy: '-upvotes'">
+          <span class="glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
+          {{ comment.upvotes }} - by: {{ comment. author }}
+          <span style="font-size:20px; margin-left: 10px;">
+            {{ comment.body }}
+          </span>
+        </div>
+
+      <form ng-submit="addComment()"
+        style="margin-top:30px;">
+        <h3>Add a new comment</h3>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+        </div>
+        <button type="submit" class="btn btn-primary" placeholder="Comment">Comment</button>
+      </form>
+    </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
