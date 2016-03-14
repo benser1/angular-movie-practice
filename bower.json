@@ -1,0 +1,23 @@
+{
+  "name": "movie-angular",
+  "homepage": "https://github.com/benser1/angular-movie-practice",
+  "authors": [
+    "benser1 <briganenser28@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "bootstrap": "^3.3.6"
+  }
+}
